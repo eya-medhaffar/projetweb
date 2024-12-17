@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quizz</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+   
+   
+        <script>
+            function validateQuiz() {
+                const answers = {
+                    q1: "a", q2: "a", q3: "c", q4: "a", q5: "b", q6: "a", q7: "d", q8: "c", q9: "c", q10: "d",
+                    q11: "c", q12: "c", q13: "c", q14: "a", q15: "a"
+                };
+                
+                let score = 0;
+                for (let i = 1; i <= 15; i++) {
+                    const radios = document.getElementsByName(`q${i}`);
+                    let selectedValue = null;
+        
+                    for (let radio of radios) {
+                        if (radio.checked) {
+                            selectedValue = radio.value;
+                            break;
+                        }
+                    }
+        
+                    const correctAnswer = answers[`q${i}`];
+                    const labels = document.getElementsByName(`q${i}`);
+                    for (let label of labels) {
+                        const labelElement = label.nextElementSibling;  
+                        if (label.value === correctAnswer) {
+                            labelElement.classList.add("correct");
+                        } else {
+                            labelElement.classList.remove("correct");
+                        }
+                    }
+                    if (selectedValue === correctAnswer) {
+                        score++;
+                    } else if (selectedValue) {
+                        const incorrectRadio = [...radios].find(r => r.checked);
+                        if (incorrectRadio) {
+                            incorrectRadio.nextElementSibling.classList.add("incorrect");
+                        }
+                    }
+                }
+                const scoreElement = document.getElementById("score");
+                scoreElement.textContent = `Votre score est de ${score}/15`;
+            }
+        </script>
+        
+  
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-3">
+            <a class="navbar-brand" href="#">Portfolio</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="accueil.html">Accueil</a></li>
+                    <li class="nav-item"><a class="nav-link" href="parcours.html">Parcours académique</a></li>
+                    <li class="nav-item"><a class="nav-link" href="stages.html">Stages</a></li>
+                    <li class="nav-item"><a class="nav-link" href="competences.html">Compétences informatiques</a></li>
+                    <li class="nav-item"><a class="nav-link" href="evenements.html">Événements et Formations</a></li>
+                    <li class="nav-item"><a class="nav-link" href="matiere.html">Matières</a></li>
+                    <li class="nav-item"><a class="nav-link" href="passion.html">À propos de moi</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="quiz.html">Quizz</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                    <li class="nav-item"><a class="nav-link" href="temoignage.html">Témoignage sur l'IIT</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+   
+        <main><h2 class="title">Quizz "JavaScript"</h2></main>
+        <div class="container">
+             <form id="quizForm">
+            <div class="question">
+                <p>Question 1 : Dans quel élément HTML met-on le JavaScript ?</p>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q1" value="a" id="q1a">
+                    <label class="form-check-label" for="q1a">&lt;script&gt;</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q1" value="b" id="q1b">
+                    <label class="form-check-label" for="q1b">&lt;js&gt;</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q1" value="c" id="q1c">
+                    <label class="form-check-label" for="q1c">&lt;scripting&gt;</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q1" value="d" id="q1d">
+                    <label class="form-check-label" for="q1d">&lt;javascript&gt;</label>
+                </div>
+            </div>
+            <div class="question">
+                <p>Question 2 : Où est l'endroit correct pour insérer du JavaScript ?</p>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q2" value="a" id="q2a">
+                    <label class="form-check-label" for="q2a">Les deux sections &lt;head&gt; et &lt;body&gt; sont
+                        correctes</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q2" value="b" id="q2b">
+                    <label class="form-check-label" for="q2b">La section &lt;head&gt;</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q2" value="c" id="q2c">
+                    <label class="form-check-label" for="q2c">La section &lt;body&gt;</label>
+                </div>
+            </div>
+            <div class="question">
+                <p>Question 3 : Quelle est la syntaxe correcte pour référencer un script externe appelé "xxx.js" ?</p>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q3" value="a" id="q3a">
+                    <label class="form-check-label" for="q3a">&lt;script href="xxx.js"&gt;</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q3" value="b" id="q3b">
+                    <label class="form-check-label" for="q3b">&lt;script name="xxx.js"&gt;</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q3" value="c" id="q3c">
+                    <label class="form-check-label" for="q3c">&lt;script src="xxx.js"&gt;</label>
+                </div>
+            </div>
+            <div class="question">
+                <p>Question 4 : Comment écrivez-vous "Hello World" dans une boîte d'alerte ?</p>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q4" value="a" id="q4a">
+                    <label class="form-check-label" for="q4a">alert("Hello World");</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q4" value="b" id="q4b">
+                    <label class="form-check-label" for="q4b">msg("Hello World");</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q4" value="c" id="q4c">
+                    <label class="form-check-label" for="q4c">msgBox("Hello World");</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q4" value="d" id="q4d">
+                    <label class="form-check-label" for="q4d">alertBox("Hello World");</label>
+                </div>
+            </div>
+            <div class="question">
+                <p>Question 5 : Comment créez-vous une fonction en JavaScript ?</p>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q5" value="a" id="q5a">
+                    <label class="form-check-label" for="q5a">function:myFunction()</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q5" value="b" id="q5b">
+                    <label class="form-check-label" for="q5b">function myFunction()</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q5" value="c" id="q5c">
+                    <label class="form-check-label" for="q5c">function = myFunction()</label>
+                </div>
+            </div>
+            <div class="question">
+                <p>Question 6 : Comment appelez-vous une fonction nommée "myFunction" ?</p>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q6" value="a" id="q6a">
+                    <label class="form-check-label" for="q6a">myFunction()</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q6" value="b" id="q6b">
+                    <label class="form-check-label" for="q6b">call function myFunction()</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q6" value="c" id="q6c">
+                    <label class="form-check-label" for="q6c">call myFunction()</label>
+                </div>
+            </div>
+            <div class="question">
+                <p>Question 7 : Comment écrire une instruction IF en JavaScript ?</p>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q7" value="a" id="q7a">
+                    <label class="form-check-label" for="q7a">if i = 5</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q7" value="b" id="q7b">
+                    <label class="form-check-label" for="q7b">if i == 5 then</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q7" value="c" id="q7c">
+                    <label class="form-check-label" for="q7c">if i = 5 then</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q7" value="d" id="q7d">
+                    <label class="form-check-label" for="q7d">if (i == 5)</label>
+                </div>
+            </div>
+            <div class="question">
+                <p>Question 8 : Comment écrire une instruction IF pour exécuter du code si "i" n'est PAS égal à 5 ?</p>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q8" value="a" id="q8a">
+                    <label class="form-check-label" for="q8a">if (i &lt;&gt; 5)</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q8" value="b" id="q8b">
+                    <label class="form-check-label" for="q8b">if i =! 5 then</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q8" value="c" id="q8c">
+                    <label class="form-check-label" for="q8c">if (i != 5)</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q8" value="d" id="q8d">
+                    <label class="form-check-label" for="q8d">if i &lt;&gt; 5</label>
+                </div>
+            </div>
+            <div class="question">
+                <p>Question 9 : Comment commence une boucle WHILE ?</p>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q9" value="a" id="q9a">
+                    <label class="form-check-label" for="q9a">while i = 1 to 10</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q9" value="b" id="q9b">
+                    <label class="form-check-label" for="q9b">while (i <= 10; i++)</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q9" value="c" id="q9c">
+                    <label class="form-check-label" for="q9c">while (i <= 10)</label>
+                </div>
+            </div>
+            <div class="question">
+                <p>Question 10 : Comment commence une boucle FOR ?</p>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q10" value="a" id="q10a">
+                    <label class="form-check-label" for="q10a">for (i = 0; i <= 5)</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q10" value="b" id="q10b">
+                    <label class="form-check-label" for="q10b">for i = 1 to 5</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q10" value="c" id="q10c">
+                    <label class="form-check-label" for="q10c">for (i <= 5; i++)</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q10" value="d" id="q10d">
+                    <label class="form-check-label" for="q10d">for (i = 0; i <= 5; i++)</label>
+                </div>
+            </div>
+            <div class="question">
+                <p>Question 11 : Comment ajoutez-vous un commentaire en JavaScript ?</p>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q11" value="a" id="q11a">
+                    <label class="form-check-label" for="q11a">&lt;!--Ceci est un commentaire--&gt;</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q11" value="b" id="q11b">
+                    <label class="form-check-label" for="q11b"># Ceci est un commentaire</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q11" value="c" id="q11c">
+                    <label class="form-check-label" for="q11c">// Ceci est un commentaire</label>
+                </div>
+            </div>
+            <div class="question">
+                <p>Question 12 : Quel événement se produit lorsqu'un utilisateur clique sur un élément HTML ?</p>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q12" value="a" id="q12a">
+                    <label class="form-check-label" for="q12a">onmouseover</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q12" value="b" id="q12b">
+                    <label class="form-check-label" for="q12b">onchange</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q12" value="c" id="q12c">
+                    <label class="form-check-label" for="q12c">onclick</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q12" value="d" id="q12d">
+                    <label class="form-check-label" for="q12d">onmouseclick</label>
+                </div>
+            </div>
+            <div class="question">
+                <p>Question 13 : Quelle est la méthode JavaScript pour ajouter un élément au tableau ?</p>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q13" value="a" id="q13a">
+                    <label class="form-check-label" for="q13a">append()</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q13" value="b" id="q13b">
+                    <label class="form-check-label" for="q13b">add()</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q13" value="c" id="q13c">
+                    <label class="form-check-label" for="q13c">push()</label>
+                </div>
+            </div>
+            <div class="question">
+                <p>Question 14 : Comment créez-vous un objet JavaScript ?</p>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q14" value="a" id="q14a">
+                    <label class="form-check-label" for="q14a">var person = { name: "John", age: 30 }</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q14" value="b" id="q14b">
+                    <label class="form-check-label" for="q14b">var person = "John", 30;</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q14" value="c" id="q14c">
+                    <label class="form-check-label" for="q14c">var person = new Object("John", 30);</label>
+                </div>
+            </div>
+            <div class="question">
+                <p>Question 15 : Quelle est la syntaxe correcte pour définir un tableau en JavaScript ?</p>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q15" value="a" id="q15a">
+                    <label class="form-check-label" for="q15a">var arr = [];</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q15" value="b" id="q15b">
+                    <label class="form-check-label" for="q15b">var arr = new Array();</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q15" value="c" id="q15c">
+                    <label class="form-check-label" for="q15c">var arr = {}; </label>
+                </div>
+            </div>
+            <button type="button" class="btn btn-primary" onclick="validateQuiz()">Valider</button>
+        </form>
+        <div id="score" class="text-center"></div>
+    </div>
+    <footer>
+        <div class="d-flex align-items-center justify-content-between">
+            <div style="flex: 1; text-align: center;">
+                <p style="margin: 0;">Copyright &copy; 2024 Eya Medhaffar</p>
+            </div>
+            <div class="icons">
+                <a href="https://www.facebook.com/eyamedhaffar2002" aria-label="Facebook" target="_blank" class="me-3">
+                    <i class="bi bi-facebook social-icon"></i>
+                </a>
+                <a href="https://www.instagram.com/eya_medhaffar/" aria-label="Instagram" target="_blank" class="me-3">
+                    <i class="bi bi-instagram social-icon"></i>
+                </a>
+                <a href="https://www.linkedin.com/in/eya-medhaffar/" aria-label="Linkedin" target="_blank" class="me-3">
+                    <i class="bi bi-linkedin social-icon"></i>
+                </a>
+                <a href="https://github.com/eya-medhaffar" aria-label="Github" target="_blank">
+                    <i class="bi bi-github social-icon"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>
